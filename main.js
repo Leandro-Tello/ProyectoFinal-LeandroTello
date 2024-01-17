@@ -23,7 +23,8 @@ let datoCantidad;
 let arrayProductos = [];
 
 //URL API
-let url = "https://ipgeolocation.abstractapi.com/v1/?api_key=bb56507f73c2490c92220a3ed8b1b909&ip_address=181.91.15.219";
+const url = "https://ipgeolocation.abstractapi.com/v1/?api_key=bb56507f73c2490c92220a3ed8b1b909&ip_address=181.91.15.219";
+const options = {method: 'GET'};
 
 //codigo
   function menu(){
@@ -35,7 +36,14 @@ let url = "https://ipgeolocation.abstractapi.com/v1/?api_key=bb56507f73c2490c922
     <tr><th id=clickOpcionB>B: Agregar productos</th></tr>
     <tr><th id=clickOpcionC>C: Eliminar productos</th></tr>
     <tr><th id=clickOpcionD>D: Buscar productos</th></tr>
-    </table>`
+    </table>
+    
+    <footer>
+      <h3 id="direccion"></h3>
+      <h3 id="ciudad"></h3>
+      <h3 id="localidad"></h3>
+      <h3 id="pais"></h3>
+    </footer>`
 
     clickOpcionA = document.getElementById("clickOpcionA");
     clickOpcionB = document.getElementById("clickOpcionB");
@@ -63,6 +71,7 @@ let url = "https://ipgeolocation.abstractapi.com/v1/?api_key=bb56507f73c2490c922
     botonInicio.onclick = () => {
       menu();
       ClickOpcion();
+      llamarApi();
     }
 
   }
@@ -99,8 +108,6 @@ let url = "https://ipgeolocation.abstractapi.com/v1/?api_key=bb56507f73c2490c922
         body.innerHTML = `<label>Sin productos</label>
                           <div></div>`;
       }
-
-
       mostrarProductos();
       botonMenu();
     }
@@ -267,20 +274,12 @@ let url = "https://ipgeolocation.abstractapi.com/v1/?api_key=bb56507f73c2490c922
   } //fin de function
 
   function llamarApi(){
-    fetch(url)
+    fetch(url, options)
     .then((respuesta)=>{
       console.log(respuesta);
       return respuesta.json();
   })
     .then(({ip_address, city, region, country})=>{
-      body.innerHTML +=
-      `<footer>
-      <h3 id="direccion"></h3>
-      <h3 id="ciudad"></h3>
-      <h3 id="localidad"></h3>
-      <h3 id="pais"></h3>
-      </footer>
-      `
       let direccion = document.getElementById("direccion");
       direccion.innerHTML = ip_address;
   
@@ -300,3 +299,4 @@ let url = "https://ipgeolocation.abstractapi.com/v1/?api_key=bb56507f73c2490c922
 
   menu();
   ClickOpcion();
+  llamarApi();
