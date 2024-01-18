@@ -107,9 +107,19 @@ const options = {method: 'GET'};
       if(arrayProductos.length == 0){
         body.innerHTML = `<label>Sin productos</label>
                           <div></div>`;
+                          menu();
+                          ClickOpcion();
+                          llamarApi();
+                          Swal.fire({
+                            title: 'Sin productos',
+                            text: 'Agregue un numero valido de productos',
+                            icon: 'error',
+                            confirmButtonText: 'Confirmar'
+                          })
+      }else{
+        mostrarProductos();
+        botonMenu();
       }
-      mostrarProductos();
-      botonMenu();
     }
 
     //-------------------------------------------------------------------------------------------------------------------------------
@@ -193,6 +203,17 @@ const options = {method: 'GET'};
       body.innerHTML = `<label>¿Qué elemento desea borrar?</label>
                         <div></div>`;
     
+      if(arrayProductos.length == 0){
+        menu();
+        ClickOpcion();
+        llamarApi();
+        Swal.fire({
+          title: 'Sin productos',
+          text: 'No hay productos que borrar',
+          icon: 'error',
+          confirmButtonText: 'Confirmar'
+        })
+      }else{
       mostrarProductos();
       
       form = document.getElementById("producto " + i);
@@ -231,10 +252,22 @@ const options = {method: 'GET'};
 
       });//fin evento
     }//fin opcion C
-    
+  }
   //--------------------------------------------------------------------------------------------------------------------------------
   
     clickOpcionD.onclick = () => {
+
+      if(arrayProductos.length == 0){
+        menu();
+                          ClickOpcion();
+                          llamarApi();
+                          Swal.fire({
+                            title: 'Sin productos',
+                            text: 'No hay productos que buscar',
+                            icon: 'error',
+                            confirmButtonText: 'Confirmar'
+                          })
+      }else{
       
       body.innerHTML = `<label>"¿Que producto desea buscar?"</label>
                           <div></div>
@@ -270,7 +303,7 @@ const options = {method: 'GET'};
                             }
                           });
     }//fin opcion D
-
+  }
   } //fin de function
 
   function llamarApi(){
