@@ -22,7 +22,7 @@ let datoCantidad;
 //arrays
 let arrayProductos = [];
 
-//URL API
+//API
 const url = "https://ipgeolocation.abstractapi.com/v1/?api_key=bb56507f73c2490c92220a3ed8b1b909&ip_address=181.91.15.219";
 const options = {method: 'GET'};
 
@@ -50,7 +50,7 @@ const options = {method: 'GET'};
     clickOpcionC = document.getElementById("clickOpcionC");
     clickOpcionD = document.getElementById("clickOpcionD");
 
-
+    //Variables guardadas en Storage para mantener los productos guardados.
     cantidadObjetos = Number(localStorage.getItem("cantidadObjetos"));
     contador = Number(localStorage.getItem("contador"));
     arrayProductos = JSON.parse(localStorage.getItem("Productos"));
